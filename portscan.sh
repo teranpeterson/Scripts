@@ -125,6 +125,7 @@ ftpset="false"
 mssqlset="false"
 smbset="false"
 nfsset="false"
+mysqlset="false"
 while read -r line; do
     lines=$(($lines + 1))
     indport=$(echo "$line" | cut -d '/' -f 1)
@@ -175,8 +176,10 @@ while read -r line; do
             fi
             ;;
         3306)
-            scriptopts+=",mysql-*"
-            mssqlset="true"	
+            if [ $mysqlset == "false" ]; then
+                scriptopts+=",mysql-*"
+                mysqlset="true"	
+            fi
             ;;
         *)
             ;;
