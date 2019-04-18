@@ -1,12 +1,10 @@
 #!/bin/bash -e
 #############################################################################
 #	PORT SCAN BY SICINTHEMIND
-# For Laziness, copy to /usr/bin/
-# 
 #############################################################################
 if [ -z $1 ]; then
     echo "fail... add an argument"
-    echo " $0 <ip.add.re.ss>"
+    echo " $0 <ip.add.re.ss> <hostname>(opt)"
     exit 1
 fi
 #############################################################################
@@ -124,6 +122,7 @@ tftpset="false"
 ftpset="false"
 mssqlset="false"
 smbset="false"
+nfsset="false"
 while read -r line; do
     lines=$(($lines + 1))
     indport=$(echo "$line" | cut -d '/' -f 1)
@@ -168,13 +167,14 @@ while read -r line; do
     fi
     case $indport in
         2049)
-            scriptopts+=",nfs-*"
+            if [ $nfsset == "false" ]; then
+                scriptopts+=",nfs-*"
+                nfsset="true"
+            fi
             ;;
         3306)
             scriptopts+=",mysql-*"
-            ;;
-        80)
-            scriptopts+=",http-vuln*"
+            mssqlset="true"	
             ;;
         *)
             ;;
