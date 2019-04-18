@@ -1,6 +1,8 @@
 #!/bin/bash -e
 #############################################################################
-#	PORT SCAN BY SICINTHEMIND
+#   PORT SCAN BY SICINTHEMIND
+#     Can install to /usr/bin/ and it will run anywhere, saving the files
+#     in the current working directory.
 #############################################################################
 if [ -z $1 ]; then
     echo "fail... add an argument"
