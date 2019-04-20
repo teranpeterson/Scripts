@@ -164,8 +164,8 @@ while read -r line; do
         scriptopts+=",ms-sql-config.nse,ms-sql-config.nse,ms-sql-dac.nse,ms-sql-dump-hashes.nse,ms-sql-empty-password.nse,ms-sql-hasdbaccess.nse,ms-sql-info.nse,ms-sql-ntlm-info.nse"
         mssqlset="true"
     fi
-    if [[ $line == *"microsoft-ds"* ]] && [ $smbset == "false" ]; then
-        scriptopts+=",smb-vuln-*"
+    if [[ $line == *"microsoft-ds"* ]] || [[ $line == *"netbios-ssn"* ]] && [ $smbset == "false" ]; then
+        scriptopts+=",smb-vuln-*,smb-enum-users.nse,smb-system-info.nse,smb-double-pulsar-backdoor.nse,smb2-vuln-uptime.nse,smb2-time.nse,smb-os-discovery.nse,smb-server-stats.nse,smb2-security-mode.nse,samba-vuln-cve-2012-1182.nse"
         smbset="true"
     fi
     case $indport in
@@ -174,6 +174,7 @@ while read -r line; do
                 scriptopts+=",nfs-*"
                 nfsset="true"
             fi
+
             ;;
         3306)
             if [ $mysqlset == "false" ]; then
@@ -198,3 +199,4 @@ else
 fi
 clear
 cat $vulresults
+
