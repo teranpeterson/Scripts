@@ -3,7 +3,7 @@
 #
 #      Author:  Sicinthemind
 #        Date:  03-04-2014
-#     Purpose:  Get off my lawn you little bastards!
+#     Purpose:  Get off my lawn!
 #
 ##############################################################################
 #Grab Updated IANA Address Space Assignments only if Newer Version
